@@ -14,8 +14,12 @@ import (
 	"github.com/pocketbase/pocketbase"
 )
 
+// version is set during build time using ldflags
+var version = "dev" // Default value
+
 func main() {
 	app := pocketbase.New()
+	app.RootCmd.Version = version // Assign the version here
 	app.RootCmd.Short = "\033[38;2;255;100;0m      dP oo       dP oo                     \033[0m\n" +
 		"\033[38;2;255;71;43m      88          88                        \033[0m\n" +
 		"\033[38;2;255;43;86m.d888b88 dP .d888b88 dP 88d8b.d8b. .d8888b. \033[0m\n" +

@@ -22,9 +22,12 @@ before:
 builds:
   - id: didimo
     binary: didimo
-    main: ./cmd/didimo/ 
+    main: ./cmd/didimo/
     env:
       - CGO_ENABLED=0
+    # Inject version information using ldflags
+    ldflags:
+      - -X main.version={{.Version}}
     targets:
       - linux_amd64
       - linux_arm64
@@ -36,7 +39,7 @@ builds:
 
 archives:
   - format: binary
-    name_template: '{{ .Binary }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    name_template: "{{ .Binary }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 
 changelog:
   sort: asc
